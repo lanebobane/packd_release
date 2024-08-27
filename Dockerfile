@@ -22,4 +22,4 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
 EXPOSE 5000
-CMD ["gunicorn","--bind", ":5000", "packd.wsgi:application"]
+CMD ["gunicorn","--bind", ":5000", "packd.packd.wsgi:application"]
