@@ -3,3 +3,4 @@ filelock==3.8.0
 platformdirs==2.5.4
 Django==4.2.3
 psycopg2-binary==2.9.6
+gunicorn==21.2.0
