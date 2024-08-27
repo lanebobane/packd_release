@@ -1,0 +1,20 @@
+{% extends 'packr/base.html' %}
+{% block content %}
+<h1>Login</h1>
+<form method="POST">
+    {% csrf_token %}
+    
+    <label>username</label>
+    {{form.username}}
+    
+    <label>password</label>
+    {{form.password}}
+
+
+    <button class="bg-green-500" type="submit">Log In</button>
+
+    <a href="{% url 'users:register' %}">Register</a>
+
+</form>
+
+{% endblock %}

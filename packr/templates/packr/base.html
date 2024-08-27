@@ -1,0 +1,40 @@
+{% load static %}
+<html>
+<link rel="stylesheet" type="text/css" href="{% static 'css/global.css' %}" /> 
+<!-- <style type="text/css">
+	.grid-container {
+	display: inline-grid;
+	grid-template-columns: fit-content(100%);
+	}
+
+	.grid-item {
+	border: 1px solid rgba(0, 0, 0, 0.8);
+	text-align: left;
+	padding: 5px;
+}
+</style> -->
+<body>
+	<div class="global">
+	<div>Packd: Making the world of packing bags a better place<div>
+		<div>
+			Welcome, {{user.get_username}}
+		</div>
+    	<div>
+    		<a href="{% url 'packr:shared_packs' %}">Shared Packs</a>
+			{% if user.is_authenticated %}
+			<a href="{% url 'users:logout' %}">Logout</a>
+			<a href="{% url 'packr:dashboard' %}">Dashboard</a>
+			<a href="{% url 'packr:add_item' %}">Add Item</a>
+			<a href="{% url 'packr:add_pack' %}">Pack Bag</a>
+			{% else %}
+			<a href="{% url 'users:login' %}">Login</a>
+		    <a href="{% url 'users:register' %}">Register</a>
+    		{% endif %}
+		</div>
+		
+	{% block content %}
+
+	{% endblock %}		
+	</div>
+</body>
+</html>

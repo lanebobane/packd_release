@@ -1,0 +1,21 @@
+{% extends 'packr/base.html' %}
+{% block content %}
+<h1>Shared Packs</h1>
+
+{% for pack in packs %}
+    <div>{{pack.name}}</div>
+    <div>Bag: {{pack.bag}}</div>
+    {% for item in pack.items.all %}
+        <div>{{item.name}}</div>
+    {% endfor %}
+    <br>
+    <form action="{% url 'packr:adopt_pack' pack.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Adopt Pack">
+    </form>
+{% endfor %}
+
+
+
+
+{% endblock %}

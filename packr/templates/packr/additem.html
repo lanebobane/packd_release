@@ -1,0 +1,31 @@
+{% extends 'packr/base.html' %}
+{% block content %}
+
+<h1>Add Item/Bag</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Name</label>
+    {{form.name}}
+
+    <label>Weight</label>
+    {{form.weight}}
+
+    <label>Dimension X</label>
+    {{form.dimension_x}}
+
+    <label>Dimension Y</label>
+    {{form.dimension_y}}
+
+    <label>Dimension Z</label>
+    {{form.dimension_z}}
+
+    <label>Is this a bag?</label>
+    {{form.is_bag}}
+
+    <button type="submit">Create Item</button>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'packr/base.html' %}
+{% block content %}
+<h1>My Packing Dashboard</h1>
+
+<h2>Items</h2>
+
+<div class="grid-container">
+{% for item in items %}
+    <div class="grid-item">
+        <h4>{{item.name}}</h4>
+        <div>X: {{item.dimension_x}}"</div>
+        <div>Y: {{item.dimension_y}}"</div>
+        <div>Z: {{item.dimension_z}}"</div>
+        <div>Weight: {{item.weight}} lbs.</div>
+        <form action="{% url 'packr:delete_item' item.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="delete item">
+        </form>
+        <form action="{% url 'packr:add_item' item.id %}" method="get">
+            {% csrf_token %}
+            <input type="submit" value="edit item">
+        </form>
+    </div>
+{% endfor %}
+</div>
+
+<br>
+
+<div class="grid-container">
+<h2>Bags</h2>
+{% for item in bags %}
+    <div class="grid-item">
+        <h4>{{item.name}}</h4>
+        <div>X: {{item.dimension_x}}"</div>
+        <div>Y: {{item.dimension_y}}"</div>
+        <div>Z: {{item.dimension_z}}"</div>
+        <div>Weight: {{item.weight}} lbs.</div>
+        <form action="{% url 'packr:delete_item' item.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="delete item">
+        </form>
+    </div>
+{% endfor %}
+</div>
+
+<br>
+<div class="grid-container">
+<h2>Packs</h2>
+{% for pack in packs %}
+    <div class="grid-item">
+        <h4>{{pack.name}}</h4>
+        <div>Pack total weight: {{pack.pack_weight}} lbs.</div>
+        <div>Bag: {{pack.bag}}</div>
+        {% if pack.bag %}
+        <div>Bag total volume: {{pack.bag.volume}} square inches.</div>
+        {% else %}
+        <div>Bag total volume: 0 square inches (no bag selected).</div>
+        {% endif %}
+        <div>Volume remaining: {{pack.volume_remaining}} square inches.</div>
+        {% if pack.volume_remaining < 0 %}
+        <div>Warning! This bag is overpacked!</div>
+        {% endif %} 
+        <div>Items:</div>
+        {% for item in pack.items.all %}
+            <div>{{item.name}}</div>
+        {% endfor %}
+        <br>
+        <form action="{% url 'packr:delete_pack' pack.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="delete pack">
+        </form>
+        <form action="{% url 'packr:add_pack' pack.id %}" method="get">
+            {% csrf_token %}
+            <input type="submit" value="edit pack">
+        </form>
+        <form action="{% url 'packr:share_pack' pack.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="share pack">
+        </form>
+    </div>
+{% endfor %}
+</div>
+
+{% endblock %}

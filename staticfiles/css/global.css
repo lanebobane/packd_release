@@ -1,0 +1,14 @@
+.global {
+    padding: 20px;
+}
+
+.grid-container {
+    display: inline-grid;
+    grid-template-columns: fit-content(100%);
+  }
+  
+  .grid-item {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    text-align: left;
+    padding: 5px;
+  }

@@ -1,0 +1,42 @@
+{% extends 'packr/base.html' %}
+{% block content %}
+
+<h1>Pack Bag</h1>
+
+<!-- 4CR: Is having this separate form bad? Any way to avoid or do more elegantly?  -->
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div>
+        <label for="">Pack Name</label>
+        <input placeholder="{{pack.name}}" type="text" name="packname" id="packname">
+    </div>
+
+    <h2>Items</h2>
+    {% for item in packing_items %}
+        <div>
+            <label for="item{{item.id}}">{{item.name}}</label>
+            <input type="checkbox" name="itemnames" id="item{{item.id}}" value="{{item.id}}" checked="{item.id in pack_items}}">
+        </div>
+    {% endfor %}
+
+    <h2>Bags</h2>
+    {% for bag in bags %}
+        <div>
+            <label for="item{{bag.id}}">{{bag.name}}</label>
+            
+            <input type="checkbox" name="bagnames" id="bag{{bag.id}}" value="{{bag.id}}">
+        </div>
+
+
+    {% endfor %}
+    
+    
+    <div class="mb-4">
+        <input type="submit" name="Create Pack" value="Create Pack">
+    </div>
+</form>
+
+
+{% endblock %}

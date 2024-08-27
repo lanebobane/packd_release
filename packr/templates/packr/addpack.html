@@ -1,0 +1,22 @@
+{% extends 'packr/base.html' %}
+{% block content %}
+
+<h1>Pack Bag</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Name</label>
+    {{form.name}}
+
+    <label>Bag</label>
+    {{form.bag}}
+
+    <label>Items</label>
+    {{form.items}}
+
+    <button type="submit">Create Pack</button>
+
+</form>
+
+{% endblock %}

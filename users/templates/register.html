@@ -1,0 +1,19 @@
+{% extends 'packr/base.html' %}
+{% block content %}
+<h1>Register User</h1>
+<form method="POST">
+    {% csrf_token %}
+    <label>username</label>
+    {{form.username}}
+    <label>email</label>
+    {{form.email}}
+    <label>password</label>
+    {{form.password1}}
+    <label>repeat password</label>
+    {{form.password2}}
+
+    <button class="bg-green-500" type="submit">Register</button>
+
+</form>
+
+{% endblock %}
